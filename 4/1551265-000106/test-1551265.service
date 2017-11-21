@@ -1,0 +1,13 @@
+[Unit]
+Description=1551265-zby
+
+[Service]
+Type=forking
+ExecStart=/usr/sbin/test-1551265
+ExecStop=kill -s 9 `ps -aux | grep test | awk '{print $2}'`
+ExecReload=kill -s 9 `ps -aux | grep test | awk '{print $2}'`;\
+/usr/sbin/test-1551265
+RemainAfterExit=no
+
+[Install]
+WantedBy=multi-user.target

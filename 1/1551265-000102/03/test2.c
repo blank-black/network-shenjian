@@ -1,0 +1,8 @@
+//test2.c
+#include <stdio.h>
+int main()
+{
+printf("张伯阳");//打印你的姓名
+return 0; 
+}
+

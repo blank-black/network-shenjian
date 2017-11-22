@@ -1,0 +1,142 @@
+#include <iostream>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <stdio.h>
+#include <errno.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+#include <string.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <sys/shm.h>
+#include <time.h>
+#include <signal.h>
+
+using namespace std;
+#define BUFLEN 20  //Max length of buffer
+#define TIMEOUT 1
+struct sockaddr_in si_me1, si_me2,si_other1,si_other2;
+int s1,s2;
+socklen_t slen1,slen2;
+char message[BUFLEN];
+
+void CbSigAlrm(int signo)
+{
+    sendto(s1, message, sizeof(message),0, (struct sockaddr *) &si_other1, slen1);
+    sendto(s2, message, sizeof(message),0, (struct sockaddr *) &si_other2, slen2);
+    cout<<"send=";
+    int i;
+    for(i=0;i<sizeof(message);i++)
+        cout<<message[i];
+    cout<<endl;
+    alarm(TIMEOUT);
+}
+
+int main(int argc,char* argv[])
+{
+     
+    int  i , recv_len;
+    char buf[BUFLEN];
+    memset(buf,0,sizeof(buf));
+    slen1 = sizeof(si_other1);
+    slen2 = sizeof(si_other2);
+    //create a UDP socket
+    s1=socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+    s2=socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+    if (s1 == -1)
+    {
+        exit(-1);
+    }
+    int port1=atoi(argv[1]);
+    int port2=atoi(argv[2]);
+    // zero out the structure
+    memset((char *) &si_me1, 0, sizeof(si_me1));
+    memset((char *) &si_me2, 0, sizeof(si_me2));
+    if(signal(SIGALRM,CbSigAlrm)==SIG_ERR)
+    {
+        perror("signal");
+        return 0;
+    }
+
+    si_me1.sin_family = AF_INET;
+    si_me1.sin_port = htons(port1);
+    si_me1.sin_addr.s_addr = htonl(INADDR_ANY);
+
+    si_me2.sin_family = AF_INET;
+    si_me2.sin_port = htons(port2);
+    si_me2.sin_addr.s_addr = htonl(INADDR_ANY);
+
+    int flags = fcntl(s1, F_GETFL, 0);                        //获取文件的flags1值。
+    fcntl(s1, F_SETFL, flags | O_NONBLOCK);   //设置成非阻塞模式；
+    flags = fcntl(s2, F_GETFL, 0);                        //获取文件的flags1值。
+    fcntl(s2, F_SETFL, flags | O_NONBLOCK);   //设置成非阻塞模式；
+
+    //bind socket to port1
+    if( bind(s1 , (struct sockaddr*)&si_me1, sizeof(si_me1) ) == -1)
+    {
+        exit(-1);
+    }
+    if( bind(s2 , (struct sockaddr*)&si_me2, sizeof(si_me2) ) == -1)
+    {
+        exit(-1);
+    }
+    for(i=0;i<BUFLEN;i++)
+        message[i]=i%10+'0';
+
+    //keep listening for data
+
+    fd_set  fdR;
+
+    memset(buf,0,sizeof(buf));
+    alarm(TIMEOUT);
+
+    while(1)
+    {
+        FD_ZERO(&fdR); 
+        FD_SET(s1, &fdR); 
+
+        if(select(s1 + 1, &fdR, NULL,NULL, NULL))
+        {
+            recv_len = recvfrom(s1, buf, BUFLEN, 0,(struct sockaddr *) &si_other1, &slen1);
+            int flag_zero=0;
+            for(i=0;i<BUFLEN;i++)
+                if(buf[i])
+                    {
+                        flag_zero=1;
+                        break;
+                    }
+            if(flag_zero)
+            {
+                cout<<"recv1_len:"<<recv_len<<endl;
+                for(i=0;i<BUFLEN;i++)
+                    cout<<buf[i];
+                cout<<endl;
+            }
+        }
+
+        FD_ZERO(&fdR); 
+        FD_SET(s1, &fdR); 
+        if(select(s2 + 1, &fdR, NULL,NULL, NULL))
+        {
+            recv_len = recvfrom(s2, buf, BUFLEN, 0,(struct sockaddr *) &si_other2, &slen2);
+            int flag_zero=0;
+            for(i=0;i<BUFLEN;i++)
+                if(buf[i])
+                    {
+                        flag_zero=1;
+                        break;
+                    }
+            if(flag_zero)
+            {
+                cout<<"recv2_len:"<<recv_len<<endl;
+                for(i=0;i<BUFLEN;i++)
+                    cout<<buf[i];
+                cout<<endl;
+            }
+        }
+        memset(buf,0,sizeof(buf));
+    }
+ 
+    return 0;
+}

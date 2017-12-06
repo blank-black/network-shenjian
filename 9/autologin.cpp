@@ -93,47 +93,47 @@ public:
 	~CBase64();
 
 	/*********************************************************
-	* º¯ÊıËµÃ÷£º½«ÊäÈëÊı¾İ½øĞĞbase64±àÂë
-	* ²ÎÊıËµÃ÷£º[in]pIn		ĞèÒª½øĞĞ±àÂëµÄÊı¾İ
-				[in]uInLen  ÊäÈë²ÎÊıµÄ×Ö½ÚÊı
-				[out]strOut Êä³öµÄ½øĞĞbase64±àÂëÖ®ºóµÄ×Ö·û´®
-	* ·µ»ØÖµ  £ºtrue´¦Àí³É¹¦,falseÊ§°Ü
-	* ×÷  Õß  £ºChenLi
-	* ±àĞ´Ê±¼ä£º2009-02-17
+	* å‡½æ•°è¯´æ˜ï¼šå°†è¾“å…¥æ•°æ®è¿›è¡Œbase64ç¼–ç 
+	* å‚æ•°è¯´æ˜ï¼š[in]pIn		éœ€è¦è¿›è¡Œç¼–ç çš„æ•°æ®
+				[in]uInLen  è¾“å…¥å‚æ•°çš„å­—èŠ‚æ•°
+				[out]strOut è¾“å‡ºçš„è¿›è¡Œbase64ç¼–ç ä¹‹åçš„å­—ç¬¦ä¸²
+	* è¿”å›å€¼  ï¼štrueå¤„ç†æˆåŠŸ,falseå¤±è´¥
+	* ä½œ  è€…  ï¼šChenLi
+	* ç¼–å†™æ—¶é—´ï¼š2009-02-17
 	**********************************************************/
 	bool static Encode(const  char *pIn,  long uInLen, string& strOut);
 
 	/*********************************************************
-	* º¯ÊıËµÃ÷£º½«ÊäÈëÊı¾İ½øĞĞbase64±àÂë
-	* ²ÎÊıËµÃ÷£º[in]pIn			ĞèÒª½øĞĞ±àÂëµÄÊı¾İ
-				[in]uInLen		ÊäÈë²ÎÊıµÄ×Ö½ÚÊı
-				[out]pOut		Êä³öµÄ½øĞĞbase64±àÂëÖ®ºóµÄ×Ö·û´®
-				[out]uOutLen	Êä³öµÄ½øĞĞbase64±àÂëÖ®ºóµÄ×Ö·û´®³¤¶È
-	* ·µ»ØÖµ  £ºtrue´¦Àí³É¹¦,falseÊ§°Ü
-	* ×÷  Õß  £ºChenLi
-	* ±àĞ´Ê±¼ä£º2009-02-17
+	* å‡½æ•°è¯´æ˜ï¼šå°†è¾“å…¥æ•°æ®è¿›è¡Œbase64ç¼–ç 
+	* å‚æ•°è¯´æ˜ï¼š[in]pIn			éœ€è¦è¿›è¡Œç¼–ç çš„æ•°æ®
+				[in]uInLen		è¾“å…¥å‚æ•°çš„å­—èŠ‚æ•°
+				[out]pOut		è¾“å‡ºçš„è¿›è¡Œbase64ç¼–ç ä¹‹åçš„å­—ç¬¦ä¸²
+				[out]uOutLen	è¾“å‡ºçš„è¿›è¡Œbase64ç¼–ç ä¹‹åçš„å­—ç¬¦ä¸²é•¿åº¦
+	* è¿”å›å€¼  ï¼štrueå¤„ç†æˆåŠŸ,falseå¤±è´¥
+	* ä½œ  è€…  ï¼šChenLi
+	* ç¼–å†™æ—¶é—´ï¼š2009-02-17
 	**********************************************************/
 	bool static Encode(const  char *pIn,  long uInLen,  char *pOut,  long *uOutLen);
 	
 	/*********************************************************
-	* º¯ÊıËµÃ÷£º½«ÊäÈëÊı¾İ½øĞĞbase64½âÂë
-	* ²ÎÊıËµÃ÷£º[in]strIn		ĞèÒª½øĞĞ½âÂëµÄÊı¾İ
-				[out]pOut		Êä³ö½âÂëÖ®ºóµÄ½ÚÊıÊı¾İ
-				[out]uOutLen	Êä³öµÄ½âÂëÖ®ºóµÄ×Ö½ÚÊı³¤¶È
-	* ·µ»ØÖµ  £ºtrue´¦Àí³É¹¦,falseÊ§°Ü
-	* ×÷  Õß  £ºChenLi
-	* ±àĞ´Ê±¼ä£º2009-02-17
+	* å‡½æ•°è¯´æ˜ï¼šå°†è¾“å…¥æ•°æ®è¿›è¡Œbase64è§£ç 
+	* å‚æ•°è¯´æ˜ï¼š[in]strIn		éœ€è¦è¿›è¡Œè§£ç çš„æ•°æ®
+				[out]pOut		è¾“å‡ºè§£ç ä¹‹åçš„èŠ‚æ•°æ•°æ®
+				[out]uOutLen	è¾“å‡ºçš„è§£ç ä¹‹åçš„å­—èŠ‚æ•°é•¿åº¦
+	* è¿”å›å€¼  ï¼štrueå¤„ç†æˆåŠŸ,falseå¤±è´¥
+	* ä½œ  è€…  ï¼šChenLi
+	* ç¼–å†™æ—¶é—´ï¼š2009-02-17
 	**********************************************************/
 	bool static Decode(const string& strIn,  char *pOut,  long *uOutLen) ;
 
 	/*********************************************************
-	* º¯ÊıËµÃ÷£º½«ÊäÈëÊı¾İ½øĞĞbase64½âÂë
-	* ²ÎÊıËµÃ÷£º[in]strIn		ĞèÒª½øĞĞ½âÂëµÄÊı¾İ
-				[out]pOut		Êä³ö½âÂëÖ®ºóµÄ½ÚÊıÊı¾İ
-				[out]uOutLen	Êä³öµÄ½âÂëÖ®ºóµÄ×Ö½ÚÊı³¤¶È
-	* ·µ»ØÖµ  £ºtrue´¦Àí³É¹¦,falseÊ§°Ü
-	* ×÷  Õß  £ºChenLi
-	* ±àĞ´Ê±¼ä£º2009-02-17
+	* å‡½æ•°è¯´æ˜ï¼šå°†è¾“å…¥æ•°æ®è¿›è¡Œbase64è§£ç 
+	* å‚æ•°è¯´æ˜ï¼š[in]strIn		éœ€è¦è¿›è¡Œè§£ç çš„æ•°æ®
+				[out]pOut		è¾“å‡ºè§£ç ä¹‹åçš„èŠ‚æ•°æ•°æ®
+				[out]uOutLen	è¾“å‡ºçš„è§£ç ä¹‹åçš„å­—èŠ‚æ•°é•¿åº¦
+	* è¿”å›å€¼  ï¼štrueå¤„ç†æˆåŠŸ,falseå¤±è´¥
+	* ä½œ  è€…  ï¼šChenLi
+	* ç¼–å†™æ—¶é—´ï¼š2009-02-17
 	**********************************************************/
 	bool static Decode(const  char *pIn,  long uInLen,  char *pOut,  long *uOutLen) ;
 };
@@ -353,9 +353,9 @@ int check_login(int server_sock)
 	// char cmd_temp[1000];
 	// memset(cmd_temp,0,sizeof(cmd_temp));
 	// if(CBase64::Decode(cmd2, strlen(cmd2),cmd_temp,&cmd2_len ))
-	// 	cout<<"check_login¼ÓÃÜ³É¹¦"<<endl;
+	// 	cout<<"check_loginåŠ å¯†æˆåŠŸ"<<endl;
 	// else
-	// 	cout<<"check_login¼ÓÃÜÊ§°Ü"<<endl;
+	// 	cout<<"check_loginåŠ å¯†å¤±è´¥"<<endl;
 
 	int 	cmdlen = strlen(cmd2);
 	int 	sentlen = 0;
@@ -448,9 +448,9 @@ void login(int server_sock)
 	sprintf(cmd, cmd1, username, password);
 
 	// if(CBase64::Decode(cmd_temp, strlen(cmd_temp), cmd,&cmd1_len))
-	// 	cout<<"login¼ÓÃÜ³É¹¦"<<endl;
+	// 	cout<<"loginåŠ å¯†æˆåŠŸ"<<endl;
 	// else
-	// 	cout<<"login¼ÓÃÜÊ§°Ü"<<endl;
+	// 	cout<<"loginåŠ å¯†å¤±è´¥"<<endl;
 
 	cmdlen = strlen(cmd);
 
@@ -507,9 +507,9 @@ void logout(int server_sock)
 	int 	sel, maxfd, len;
 	char cmd_temp[1000];
 	if(CBase64::Encode(cmd3, strlen(cmd3), cmd_temp,&cmd3_len))
-		cout<<"logout¼ÓÃÜ³É¹¦"<<endl;
+		cout<<"logoutåŠ å¯†æˆåŠŸ"<<endl;
 	else
-		cout<<"logout¼ÓÃÜÊ§°Ü"<<endl;
+		cout<<"logoutåŠ å¯†å¤±è´¥"<<endl;
 
 	int 	cmdlen = strlen(cmd_temp);
 	int 	sentlen = 0;
@@ -646,9 +646,9 @@ void readfile()
     sscanf(buffer,"password = %s", &password_temp);
     long password_len=100;  
     if(CBase64::Encode(password_temp, strlen(password_temp), password,&password_len))
-		cout<<"login¼ÓÃÜ³É¹¦"<<endl;
+		cout<<"loginåŠ å¯†æˆåŠŸ"<<endl;
 	else
-		cout<<"login¼ÓÃÜÊ§°Ü"<<endl;
+		cout<<"loginåŠ å¯†å¤±è´¥"<<endl;
 
     in.getline(buffer,100);
     sscanf(buffer,"retrytime = %d", &retrytime);  

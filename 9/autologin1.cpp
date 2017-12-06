@@ -15,25 +15,25 @@ using namespace std;
 #define BUFLEN 200
 #define LEN 10000
 #define port 80
-#define IP "192.168.192.17"
+#define IP "192.168.192.18"
 
-//◊¥Ã¨«Î«Û
+//Áä∂ÊÄÅËØ∑Ê±Ç
 char request1[] = "POST /include/auth_action.php HTTP/1.1\r\n\
-Host: 192.168.192.17\r\n\
+Host: 192.168.192.18\r\n\
 Connection: keep-alive\r\n\
-Content-Length: 115\r\n\
+Content-Length: 116\r\n\
 Accept: */*\r\n\
-Origin: http://192.168.192.17\r\n\
+Origin: http://192.168.192.18\r\n\
 X-Requested-With: XMLHttpRequest\r\n\
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36\r\n\
 Content-Type: application/x-www-form-urlencoded\r\n\
-Referer: http://192.168.192.17/srun_portal_pc.php?ac_id=7&userip=10.22.6.216&uservlan=600&userurl=http://www.msftconnecttest.com/redirect\r\n\
+Referer: http://192.168.192.18/srun_portal_pc.php?ac_id=10&userip=10.22.244.131&userurl=http://172.30.0.94\r\n\
 Accept-Encoding: gzip, deflate\r\n\
 Accept-Language: zh-CN,zh;q=0.9,en;q=0.8\r\n\
-Cookie: login=bQ0pOyR6IXU7PJaQQqRAcBPxGAvxAcrunljYBafnq%252BCGRngyKtQWFBTO1nYjg2lVJagdAbG6%252Fca5qolOFAWTgUB3xmwVq3T7P%252B0VxfDfDmD9BVvDNyXFF5VhnpyUHnC4oDO%252FluZ7t5T53HB4HebaOjeIt6KxU1rYb%252BrQEhJaiXqeYGCRpL0mPqDz; login=bQ0pOyR6IXU7PJaQQqRAcBPxGAvxAcrunljYBafnq%252BCGRngyKtQWFBTO1nYjg2lVJagdAbG6%252Fca5qolOFAWTgUB3xmwVq3T7P%252B0VxfDfDmD9BVvDNyXFF5VhnpyUHnC4oDO%252FluZ7t5T53HB4HebaOjeIt6KxU1rYb%252BrQEhJaiXqeYGCRpL0mPqDz\r\n\
-action=login&username=1551265&password={B}MTU5MzU3&ac_id=7&nas_ip=&user_mac=&save_me=1&ajax=1";
+Cookie: login=bQ0pOyR6IXU7PJaQQqRAcBPxGAvxAcrunljYBafnq%252BCGRngyKtQWFBTO1nYjg2lVJagdAbG6%252Fca5qolOFAWTgUB3xmwVq3T7P%252B0VxfDfDmD9BVvDNyXHip%252FO4oaKQqcyDHKGYDexJINPlSfvDRDvu%252BowFnHYL3Rbq4ePbyGpVMwVCrtF%252Fib4sGALjIE%2\r\n\
+action=login&username=1551265&password={B}MTU5MzU3&ac_id=10&user_ip=10.22.244.131&nas_ip=&user_mac=&save_me=1&ajax=1";
 
-//ÕÀ≥ˆ«Î«Û
+//ÈÄÄÂá∫ËØ∑Ê±Ç
 char request2[] = "GET /F.htm HTTP/1.1\r\n\
 Host: 192.168.1.100\r\n\
 Connection: keep-alive\r\n\
@@ -46,8 +46,8 @@ Accept-Language: zh-TW,zh;q=0.8,en-US;q=0.6,en;q=0.4\r\n\
 Cookie: PHPSESSID=mnruqf0miqepp468c4u08gieo0\r\n\r\n\
 ";
 
-char request3[] = "GET /srun_portal_pc.php?ac_id=7&userip=10.22.6.216&uservlan=600&userurl=http://www.msftconnecttest.com/redirect HTTP/1.1\r\n\
-Host: 192.168.192.17\r\n\
+char request3[] = "GET /srun_portal_pc.php?ac_id=10&userip=10.22.244.131&userurl=http://172.30.0.94 HTTP/1.1\r\n\
+Host: 192.168.192.18\r\n\
 Connection: keep-alive\r\n\
 Cache-Control: max-age=0\r\n\
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36\r\n\
@@ -55,7 +55,7 @@ Upgrade-Insecure-Requests: 1\r\n\
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8\r\n\
 Accept-Encoding: gzip, deflate\r\n\
 Accept-Language: zh-CN,zh;q=0.9,en;q=0.8\r\n\
-Cookie: login=bQ0pOyR6IXU7PJaQQqRAcBPxGAvxAcrunljYBafnq%252BCGRngyKtQWFBTO1nYjg2lVJagdAbG6%252Fca5qolOFAWTgUB3xmwVq3T7P%252B0VxfDfDmD9BVvDNyXFF5VhnpyUHnC4oDO%252FluZ7t5T53HB4HebaOjeIt6KxU1rYb%252BrQEhJaiXqeYGCRpL0mPqDz\r\n\
+Cookie: login=bQ0pOyR6IXU7PJaQQqRAcBPxGAvxAcrunljYBafnq%252BCGRngyKtQWFBTO1nYjg2lVJagdAbG6%252Fca5qolOFAWTgUB3xmwVq3T7P%252B0VxfDfDmD9BVvDNyXHip%252FO4oaKQqcyDHKGYDexJINPlSfvDRDvu%252BowFnHYL3Rbq4ePbyGpVMwVCrtF%252Fib4sGALjIE%253D\r\n\
 \r\n";
 
 
@@ -65,7 +65,7 @@ void read_cfg(char username[], char password[], char retrytime[], char checktime
 	fin.open("/home/test/autologin.cfg", ios::in);
 	if (!fin.is_open())
 	{
-		cout << "¥Úø™Œƒº˛ ß∞‹" << endl;
+		cout << "ÊâìÂºÄÊñá‰ª∂Â§±Ë¥•" << endl;
 		exit(1);
 	}
 	char buf[BUFLEN];
@@ -213,7 +213,7 @@ int if_login(int sockfd)
 		}
 		if (select(maxfd + 1, &rfds, &wfds, NULL, NULL) == -1)
 		{
-			cout << "select≥ˆ¥Ì" << endl;
+			cout << "selectÂá∫Èîô" << endl;
 			exit(1);
 		}
 		if (FD_ISSET(sockfd, &rfds))
@@ -221,11 +221,11 @@ int if_login(int sockfd)
 			len = read(sockfd, buf, LEN);
 			if (len < 0)
 			{
-				cout << "read≥ˆ¥Ì" << endl;
+				cout << "readÂá∫Èîô" << endl;
 				close(sockfd);
 				exit(1);
 			}
-			cout << "“— ’µΩ◊¥Ã¨" << endl;
+			cout << "Â∑≤Êî∂Âà∞Áä∂ÊÄÅ" << endl;
 			buf[len] = '\0';
 			cout << buf << endl;
 			return 0;
@@ -234,13 +234,13 @@ int if_login(int sockfd)
 			if (login)
 			{
 				get_time(time);
-				cout << time << " Œ¥µ«¬º" << endl;
+				cout << time << " Êú™ÁôªÂΩï" << endl;
 				return 0;
 			}
 			else if (logout)
 			{
 				get_time(time);
-				cout << time << " “—µ«¬º" << endl;
+				cout << time << " Â∑≤ÁôªÂΩï" << endl;
 				return 1;
 			}
 		}
@@ -249,13 +249,13 @@ int if_login(int sockfd)
 			len = write(sockfd, request3, strlen(request3));
 			if (len <= 0)
 			{
-				cout << "write∑¢ÀÕ≥ˆ¥Ì" << endl;
+				cout << "writeÂèëÈÄÅÂá∫Èîô" << endl;
 				exit(1);
 			}
 			else
 			{
 				get_time(time);
-				cout << time << " ’˝‘⁄«Î«Û¡¨Ω”◊¥Ã¨..." << endl;
+				cout << time << " Ê≠£Âú®ËØ∑Ê±ÇËøûÊé•Áä∂ÊÄÅ..." << endl;
 			}
 		}
 	}
@@ -265,67 +265,60 @@ void login(int sockfd,char request[])
 {
 	fd_set rfds, wfds, master;
 	int maxfd = sockfd;
-	FD_ZERO(&master);
-	FD_SET(sockfd, &master);
+	FD_ZERO(&rfds);
+	FD_ZERO(&wfds);	
+	FD_SET(sockfd, &rfds);
+	FD_SET(sockfd, &wfds);
 	int len, flag = 0;
 	char buf[LEN];
 	char time[20];
 	while (1)
 	{
-		rfds = master;
-		if (flag)
-		{
-			FD_ZERO(&wfds);
-		}
-		else
-		{
-			wfds = master;
-			flag = 1;
-		}
 		if (select(maxfd + 1, &rfds, &wfds, NULL, NULL) < 0)
 		{
-			cout << "select≥ˆ¥Ì" << endl;
+			cout << "selectÂá∫Èîô" << endl;
 			exit(1);
+		}
+		if (FD_ISSET(sockfd, &wfds))
+		{
+			len = write(sockfd, request1, strlen(request1));//ÊöÇÊó∂‰øÆÊîπ
+			cout<<len<<endl;
+			if (len <= 0)
+			{
+				cout << "writeÂèëÈÄÅÂá∫Èîô" << endl;
+				exit(1);
+			}
+			else
+			{
+				get_time(time);
+				cout << time << " Ê≠£Âú®ÁôªÂΩï..." << endl;
+			}
 		}
 		if (FD_ISSET(sockfd, &rfds))
 		{
 			len = read(sockfd, buf, LEN);
 			if (len < 0)
 			{
-				cout << "read≥ˆ¥Ì" << endl;
+				cout << "readÂá∫Èîô" << endl;
 				close(sockfd);
 				exit(1);
 			}
-			buf[len] = '\0';
-			cout << buf << endl;
-			return;
+			buf[len]='\0';
+			cout<<buf<<endl;
+			return ;
 			char *p = strstr(buf, "You have successfully logged into our system");
 			if (p)
 			{
 				get_time(time);
-				cout << time << " µ«¬º≥…π¶" << endl;
+				cout << time << " ÁôªÂΩïÊàêÂäü" << endl;
 				return;
 			}
 			p = strstr(buf, "ldap auth error");
 			if (p)
 			{
 				get_time(time);
-				cout << time << " µ«¬º ß∞‹" << endl;
+				cout << time << " ÁôªÂΩïÂ§±Ë¥•" << endl;
 				return;
-			}
-		}
-		if (FD_ISSET(sockfd, &wfds))
-		{
-			len = write(sockfd, request1, strlen(request1));//‘› ±–ﬁ∏ƒ
-			if (len <= 0)
-			{
-				cout << "write∑¢ÀÕ≥ˆ¥Ì" << endl;
-				exit(1);
-			}
-			else
-			{
-				get_time(time);
-				cout << time << " ’˝‘⁄µ«¬º..." << endl;
 			}
 		}
 	}
@@ -336,7 +329,7 @@ int main()
 	daemon(0, 1);
 	signal(SIGCHLD, SIG_IGN);
 
-	//∂¡»°≈‰÷√Œƒº˛
+	//ËØªÂèñÈÖçÁΩÆÊñá‰ª∂
 	char username[20];
 	char password[20];
 	char retrytime[10];
@@ -345,7 +338,7 @@ int main()
 	int retry = atoi(retrytime);
 	int check = atoi(checktime);
 
-	//…Ë÷√¡¨Ω”«Î«Û
+	//ËÆæÁΩÆËøûÊé•ËØ∑Ê±Ç
 	char request[LEN];
 	set_infor(request, username, password);
 
@@ -354,18 +347,18 @@ int main()
 	char time[20];
 	while (1)
 	{
-		//Ω®¡¢socket
+		//Âª∫Á´ãsocket
 		if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
 		{
-			cout << "socket≥ˆ¥Ì" << endl;
+			cout << "socketÂá∫Èîô" << endl;
 			exit(1);
 		}
-		memset(&serv_addr, 0, sizeof(serv_addr));  //√ø∏ˆ◊÷Ω⁄∂º”√0ÃÓ≥‰
-		serv_addr.sin_family = AF_INET;  // π”√IPv4µÿ÷∑
+		memset(&serv_addr, 0, sizeof(serv_addr));  //ÊØè‰∏™Â≠óËäÇÈÉΩÁî®0Â°´ÂÖÖ
+		serv_addr.sin_family = AF_INET;  //‰ΩøÁî®IPv4Âú∞ÂùÄ
 		serv_addr.sin_addr.s_addr = inet_addr(IP);
 		serv_addr.sin_port = htons(port);
 		get_time(time);
-		cout << time << " ¡¨Ω”»œ÷§∑˛ŒÒ∆˜..." << endl;
+		cout << time << " ËøûÊé•ËÆ§ËØÅÊúçÂä°Âô®..." << endl;
 		sleep(1);
 
 		while (1)
@@ -373,31 +366,31 @@ int main()
 			if (connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(struct sockaddr)) < 0)
 			{
 				get_time(time);
-				cout << time << " ¡¨Ω”»œ÷§∑˛ŒÒ∆˜ ß∞‹£¨µ»¥˝" << retry << "√Î∫ÛºÃ–¯¡¨Ω”..." << endl;
+				cout << time << " ËøûÊé•ËÆ§ËØÅÊúçÂä°Âô®Â§±Ë¥•ÔºåÁ≠âÂæÖ" << retry << "ÁßíÂêéÁªßÁª≠ËøûÊé•..." << endl;
 				sleep(retry);
 			}
 			else
 			{
 				get_time(time);
-				cout << time << " ¡¨Ω”»œ÷§∑˛ŒÒ∆˜≥…π¶" << endl;
+				cout << time << " ËøûÊé•ËÆ§ËØÅÊúçÂä°Âô®ÊàêÂäü" << endl;
 				break;
 			}
 		}
 		if (if_login(sockfd))
 		{
 			get_time(time);
-			cout << time << " Õ¯¬Á¥¶”⁄¡¨Ω”◊¥Ã¨" << endl;
+			cout << time << " ÁΩëÁªúÂ§Ñ‰∫éËøûÊé•Áä∂ÊÄÅ" << endl;
 		}
 		else
 		{
 			get_time(time);
-			cout << time << " Õ¯¬Á¥¶”⁄∂œø™◊¥Ã¨" << endl;
-			cout << time << " ’˝‘⁄¡¨Ω”..." << endl;
+			cout << time << " ÁΩëÁªúÂ§Ñ‰∫éÊñ≠ÂºÄÁä∂ÊÄÅ" << endl;
+			cout << time << " Ê≠£Âú®ËøûÊé•..." << endl;
 			login(sockfd, request1);
 		}
 		close(sockfd);
 		get_time(time);
-		cout << time << " µ»¥˝" << check << "√Î∫Û÷ÿ–¬ºÏ≤ÈÕ¯¬Á◊¥Ã¨" << endl;
+		cout << time << " Á≠âÂæÖ" << check << "ÁßíÂêéÈáçÊñ∞Ê£ÄÊü•ÁΩëÁªúÁä∂ÊÄÅ" << endl;
 		sleep(check);
 	}
 	return 0;

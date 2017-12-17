@@ -21,8 +21,7 @@ systemctl stop firewalld
 setsebool -P samba_enable_home_dirs on
 
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
-source /etc/selinux/config
 
-systemctl restart smb.service
 systemctl enable smb.service
 echo '初始化成功'
+init 6

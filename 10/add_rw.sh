@@ -1,10 +1,10 @@
 #!/bin/bash
+#$1:创建允许rw的smb用户
 
-mkdir /home/$1
 chmod 755 /home/$1
 
 echo "[$1]
-        comment = the user groups work directory
+        comment = the $1 folder
         path = /home/$1
         public = no
         read only = no
@@ -16,9 +16,6 @@ echo "[$1]
 
 ">>/etc/samba/smb.conf	
 
-testparm
-
-echo "请输入$1密码"
-smbpasswd -a $1
+echo "`date +%Y.%m.%d--%H:%M:%S`   Root add $1 read and write permissions.">>/log/$1.log
 
 systemctl restart smb.service

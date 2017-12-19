@@ -2,11 +2,11 @@
 # filename: test.sh
 
 
-mkdir /share
-chmod 777 /share
+mkdir /log
+chmod 755 /log
 
-echo '[share]
-        path = /share
+echo '[log]
+        path = /log
         available = yes
         browseable = yes
         public = yes
@@ -23,5 +23,6 @@ setsebool -P samba_enable_home_dirs on
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 
 systemctl enable smb.service
-echo '初始化成功'
+echo '初始化成功,5秒后系统重启'
+sleep(5)
 init 6

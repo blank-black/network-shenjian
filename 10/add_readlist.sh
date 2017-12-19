@@ -1,6 +1,6 @@
 #!/bin/bash
-#$1 å¾…ä¿®æ”¹ç”¨æˆ·
-#$2 æ·»åŠ å¯rè®¿é—®$1çš„ç”¨æˆ·
+#$1 ´ýÐÞ¸ÄÄ¿Â¼È¨ÏÞÓÃ»§Ãû
+#$2 Ìí¼Ó¿Ér·ÃÎÊ$1µÄÓÃ»§
 
 temp=`sed "/\[$1\]/"q /etc/samba/smb.conf|sed -n '$='`
 
@@ -9,5 +9,7 @@ sed -i "${temp}s/$/ $2/" /etc/samba/smb.conf
 
 let temp+=2
 sed -i "${temp}s/$/ $2/" /etc/samba/smb.conf
+
+echo "`date +%Y.%m.%d--%H:%M:%S`   Root add $2 read permissions.">>/log/$1.log
 
 systemctl restart smb.service
